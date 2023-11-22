@@ -1,0 +1,41 @@
+<div class="register-container">
+    <div mat-dialog-title>
+        <h1>Register</h1>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="submitDetals()">
+        <div mat-dialog-content>
+            <div class="column">
+                <mat-form-field appearance="outline">
+                    <mat-label>Full name</mat-label>
+                    <input matInput type="text" formControlName="fullName" required>
+                    <mat-error *ngIf="fullName?.hasError('required')">Full name is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" formControlName="email" required>
+                    <mat-error *ngIf="email?.hasError('required')">Email is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password" required>
+                    <mat-error *ngIf="password?.hasError('required')">Password is required</mat-error>
+                    <mat-error *ngIf="password?.hasError('minlength')">Password must have at least {{minPw}}
+                        characters</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Confirm password</mat-label>
+                    <input matInput type="password" formControlName="confirmPassword" required>
+                    <mat-error *ngIf="confirmPassword?.hasError('required')">Please confirm your password</mat-error>
+                    <mat-error *ngIf="confirmPassword?.invalid && !confirmPassword?.hasError('required')">Passwords
+                        don't match</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions class="action">
+            <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">REGISTER</button>
+        </div>
+        <div>
+            Already a member? <a routerLink="/login">Login</a>
+        </div>
+    </form>
+</div>

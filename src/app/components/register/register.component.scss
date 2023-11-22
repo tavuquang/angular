@@ -1,0 +1,22 @@
+.register-container {
+    width: 360px;
+    height: 400px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+
+    mat-form-field {
+        padding-bottom: 5px;
+    }
+}
+
+.action {
+    display: flex;
+    padding: 10px 0 15px 0;
+
+    button {
+        width: 100%;
+    }
+}
