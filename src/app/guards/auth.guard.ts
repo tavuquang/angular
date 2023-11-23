@@ -13,7 +13,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 export const afterLoginGuard: CanActivateFn = (route, state) => {
   if (localStorage.getItem('email')) {
     const router = inject(Router);
-    return router.navigate(['/employee']);;
+    return router.navigate(['/employee']);
   } else {
     return true;
   }

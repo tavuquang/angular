@@ -20,17 +20,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ConfirmDeleteComponent } from './components/confirm-delete/confirm-delete.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
 import { EmployeeComponent } from './components/employee/employee.component';
+import { RegisterModule } from './components/register/register.module';
+import { LoginModule } from './components/login/login.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmpAddEditComponent,
     ConfirmDeleteComponent,
-    LoginComponent,
-    RegisterComponent,
     EmployeeComponent,
   ],
   imports: [
@@ -52,6 +50,8 @@ import { EmployeeComponent } from './components/employee/employee.component';
     MatTableModule,
     MatPaginatorModule,
     MatSnackBarModule,
+    RegisterModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]

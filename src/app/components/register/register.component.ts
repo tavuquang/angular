@@ -55,7 +55,7 @@ export class RegisterComponent {
     }
   }
 
-  submitDetals() {
+  submitDetails() {
     const postData = { ...this.registerForm.value };
     delete postData.confirmPassword;
     this.authService.registerUser(postData).subscribe({

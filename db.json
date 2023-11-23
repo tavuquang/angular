@@ -64,6 +64,18 @@
       "experience": 5,
       "package": 9,
       "id": 11
+    },
+    {
+      "firstName": "sdf",
+      "lastName": "sdf",
+      "email": "sdf",
+      "dob": "2023-11-05T17:00:00.000Z",
+      "gender": "male",
+      "education": "Matric",
+      "company": "sdf",
+      "experience": 4,
+      "package": 12,
+      "id": 12
     }
   ],
   "users": [
@@ -72,6 +84,12 @@
       "email": "gundam00@gmail.com",
       "password": "123456789",
       "id": 1
+    },
+    {
+      "fullName": "Geats",
+      "email": "geatsix@gmail.com",
+      "password": "123456789",
+      "id": 2
     }
   ]
 }
