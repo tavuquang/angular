@@ -23,6 +23,11 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./components/register/register.module').then(m => m.RegisterModule),
     canActivate: [afterLoginGuard]
+  },
+  {
+    path: 'list',
+    loadChildren: () => import('./components/list/list.module').then(m => m.ListModule),
+    canActivate: [authGuard]
   }
 ];
 

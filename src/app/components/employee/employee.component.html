@@ -1,13 +1,8 @@
-<mat-toolbar color="primary">
-    <span>My App</span>
-    <span class="example-spacer"></span>
-    <button mat-raised-button (click)="openAddEditEmpForm()">
+<div class="add-btn-container">
+    <button mat-raised-button color="primary" (click)="openAddEditEmpForm()">
         ADD EMPLOYEE
     </button>
-    <button mat-raised-button class="logoutBtn" (click)="logOut()">
-        Log out
-    </button>
-</mat-toolbar>
+</div>
 
 <div class="main-body">
     <mat-form-field appearance="outline">

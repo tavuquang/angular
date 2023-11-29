@@ -21,8 +21,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ConfirmDeleteComponent } from './components/confirm-delete/confirm-delete.component';
 import { EmployeeComponent } from './components/employee/employee.component';
-import { RegisterModule } from './components/register/register.module';
-import { LoginModule } from './components/login/login.module';
 
 @NgModule({
   declarations: [
@@ -50,8 +48,6 @@ import { LoginModule } from './components/login/login.module';
     MatTableModule,
     MatPaginatorModule,
     MatSnackBarModule,
-    RegisterModule,
-    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]

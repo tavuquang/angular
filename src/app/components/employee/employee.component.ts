@@ -28,7 +28,6 @@ export class EmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Checking');
     this.getEmployeeList();
   }
 
@@ -105,10 +104,5 @@ export class EmployeeComponent implements OnInit {
         }
       }
     });
-  }
-
-  logOut() {
-    localStorage.clear();
-    this.router.navigate(['/login']);
   }
 }

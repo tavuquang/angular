@@ -1,0 +1,13 @@
+<div class="search-input">
+    <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput [(ngModel)]="searchText">
+    </mat-form-field>
+</div>
+
+<div class="pokemon-grid">
+    <button class="box" *ngFor="let pokemon of filteredPokemons" (click)="onDetailClick(pokemon.id)">
+        <img [src]="pokemon.sprites.front_default" alt="Pokemon">
+        <h3>{{ pokemon.name }}</h3>
+    </button>
+</div>

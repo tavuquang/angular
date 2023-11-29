@@ -37,15 +37,15 @@ export class EmpAddEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.empForm);
-
-    this.empForm.get('firstName')?.valueChanges.subscribe({
-      next: (value) => {
-        console.log(value)
-      }
-    });
-    this.empForm.patchValue(this.data);
-
+    // this.empForm.get('firstName')?.valueChanges.subscribe({
+    //   next: (value) => {
+    //     console.log(value)
+    //   }
+    // });
+    if (this.data) {
+      // console.log(this.data);
+      this.empForm.patchValue(this.data);
+    }
   }
 
   onFormSubmit() {

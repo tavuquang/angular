@@ -1,1 +1,13 @@
+<mat-toolbar color="primary" *ngIf="email">
+    <span>
+        <a routerLink="employee">Employees</a>
+    </span>
+    <span class="list">
+        <a routerLink="/list">Pokemons</a>
+    </span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button class="logoutBtn" (click)="logOut()">
+        LOG OUT
+    </button>
+</mat-toolbar>
 <router-outlet></router-outlet>
