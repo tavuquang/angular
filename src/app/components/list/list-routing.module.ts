@@ -4,12 +4,17 @@ import { ListComponent } from './list.component';
 import { DetailComponent } from './detail/detail.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: 'page',
+  //   pathMatch: 'full'
+  // },
   {
     path: '',
     component: ListComponent,
   },
   {
-    path: ':id',
+    path: 'detail/:id',
     component: DetailComponent
   }
 ];

@@ -7,19 +7,22 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { DetailComponent } from './detail/detail.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     ListComponent,
-    DetailComponent
+    DetailComponent,
   ],
   imports: [
     CommonModule,
     ListRoutingModule,
     MatGridListModule,
     MatInputModule,
-    FormsModule
+    MatButtonModule,
+    FormsModule,
+    NgxPaginationModule
   ]
 })
 export class ListModule { }
