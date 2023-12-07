@@ -16,10 +16,10 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.pokemonService.getDetailPokemon(params['id']).subscribe({
+      this.pokemonService.getDetailPokemon(params['name']).subscribe({
         next: (val) => {
           this.pokemon = val;
-          console.log(this.pokemon);
+          // console.log(this.pokemon);
         },
         error: (err) => {
           console.log(err);

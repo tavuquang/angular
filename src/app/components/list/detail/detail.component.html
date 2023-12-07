@@ -1,4 +1,4 @@
-<div class="detail" *ngIf="pokemon.id; else elseBlock">
+<div class="detail" *ngIf="pokemon.name; else elseBlock">
     <img [src]="pokemon.sprites.front_default" alt="Pokemon">
     <img [src]="pokemon.sprites.back_default" alt="Pokemon">
     <h3>{{ pokemon.name }}</h3>

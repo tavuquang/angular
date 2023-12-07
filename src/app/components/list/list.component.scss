@@ -1,11 +1,12 @@
 .search-input {
-    padding-top: 20px;
+    padding: 20px 20px 0 20px;
     margin: 0 auto;
     max-width: 1248px;
 
     mat-form-field {
         width: 100%;
     }
+
 }
 
 
@@ -30,6 +31,15 @@
             display: block;
             margin: 0 auto;
         }
+    }
+}
+
+.container-select-items {
+    padding: 0 20px;
+    text-align: end;
+
+    .select-items-page {
+        width: 80px;
     }
 }
 

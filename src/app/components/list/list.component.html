@@ -3,13 +3,23 @@
         <mat-label>Search</mat-label>
         <input matInput [(ngModel)]="searchText">
     </mat-form-field>
+
 </div>
 
 <div class="pokemon-grid">
-    <button class="box" *ngFor="let pokemon of filteredPokemons" (click)="onDetailClick(pokemon.id)">
+    <button class="box" *ngFor="let pokemon of filteredPokemons" (click)="onDetailClick(pokemon.name)">
         <img [src]="pokemon.sprites.front_default" alt="Pokemon">
         <h3>{{ pokemon.name }}</h3>
     </button>
+</div>
+
+<div class="container-select-items">
+    <p>Items per page</p>
+    <mat-form-field appearance="outline" class="select-items-page">
+        <mat-select [(value)]="selectedItem" name="pokemon" (valueChange)="selectItem()">
+            <mat-option *ngFor="let item of itemsPerPage" [value]="item">{{item}}</mat-option>
+        </mat-select>
+    </mat-form-field>
 </div>
 
 <div mat-dialog-actions class="action">

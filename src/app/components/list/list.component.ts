@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, forkJoin, map, switchMap, take } from 'rxjs';
 import { PokemonService } from 'src/app/services/pokemon/pokemon.service';
 
 @Component({
@@ -11,8 +13,13 @@ export class ListComponent implements OnInit {
   pokemons: any[] = [];
   _searchText: string = '';
   filteredPokemons: any[] = [];
-  limit = 20;
+  limit: number = 20;
   offset: number = 0;
+
+  itemsPerPage: number[] = [10, 15, 20, 25, 30];
+
+  itemsControl = new FormControl(this.itemsPerPage[0]);
+  selectedItem = this.limit;
 
   constructor(private pokemonService: PokemonService, private router: Router,
     private route: ActivatedRoute) {
@@ -35,55 +42,54 @@ export class ListComponent implements OnInit {
         this.getListPokemons(this.offset, this.limit);
         this.router.navigate([], {
           queryParams: {
-            offset: 0,
-            limit: param['limit']
+            limit: this.limit,
+            offset: this.offset
           },
         });
       } else {
         this.offset = parseInt(param['offset']);
+        this.limit = parseInt(param['limit']);
         this.getListPokemons(param['offset'], param['limit']);
-        // console.log(param['offset']);
+        // console.log(this.offset);
         this.router.navigate([], {
           queryParams: {
-            offset: param['offset'],
-            limit: param['limit']
+            limit: param['limit'],
+            offset: param['offset']
           },
         });
       }
     });
   }
 
-  getListPokemons(offset: number, limit: number) {
-    this.pokemonService.getPokemons(offset, limit).subscribe({
-      next: (val) => {
-        const newArrays: Object[] = [];
-        val.results.forEach((result: any) => {
-          this.pokemonService.getDetailPokemon(result.name).subscribe({
-            next: (uniqVal) => {
-              newArrays.push(uniqVal);
-            },
-            error: (err) => {
-              console.log(err);
-            }
-          })
-        })
-        this.pokemons = newArrays;
+  async getListPokemons(offset: number, limit: number) {
+    this.pokemonService.getPokemons(offset, limit)
+      .pipe(
+        map(response => {
+          return response.results.map((poke: any) => {
+            return this.pokemonService.getDetailPokemon(poke.name)
+          });
+        }),
+        switchMap((getDetailRequests: Observable<any>[]) => {
+          console.log(forkJoin(getDetailRequests));
+          return forkJoin(getDetailRequests);
+        }),
+      )
+      .subscribe(response => {
+        // console.log(response);
+        this.pokemons = ([] as any[]).concat(response);
         this.filteredPokemons = this.pokemons;
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
+      })
   }
 
-  onDetailClick(id: string) {
-    this.router.navigate(['/list/detail', id]);
+  onDetailClick(name: string) {
+    console.log(name);
+    this.router.navigate(['/list/detail', name]);
   }
 
 
   filterPokemons(filterTerm: string) {
     // console.log(filterTerm);
-    if (this.pokemons.length === 0 || this._searchText.trim() === '') {
+    if (this._searchText.trim() === '') {
       return this.pokemons;
     } else {
       return this.pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(filterTerm.toLowerCase()));
@@ -96,8 +102,8 @@ export class ListComponent implements OnInit {
     this.getListPokemons(this.offset, this.limit);
     this.router.navigate([], {
       queryParams: {
-        offset: this.offset,
-        limit: this.limit
+        limit: this.limit,
+        offset: this.offset
       },
     });
   }
@@ -108,10 +114,21 @@ export class ListComponent implements OnInit {
       this.getListPokemons(this.offset, this.limit);
       this.router.navigate([], {
         queryParams: {
-          offset: this.offset,
-          limit: this.limit
+          limit: this.limit,
+          offset: this.offset
         },
       });
     }
+  }
+
+  selectItem() {
+    console.log(this.selectedItem);
+    this.getListPokemons(this.offset, this.selectedItem);
+    this.router.navigate([], {
+      queryParams: {
+        limit: this.selectedItem,
+        offset: this.offset
+      }
+    })
   }
 }
